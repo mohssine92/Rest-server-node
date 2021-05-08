@@ -32,13 +32,41 @@ class server {
    } 
 
    rourtes() {
-      // my EndPoints
+     
+    // my Rest EndPoints
 
       this.app.get('/api', (req, res) => {
-        res.send('Hello World!')
+         // este callback() es el controlador de ruta /api de momento .
+        res.json({
+          msg: 'get API'
+        })
       }) 
 
-      // TODO : vamos a crear nuestros 4 Rest End-points
+      this.app.put('/api', (req, res) => {
+        res.json({
+          msg: 'put API'
+        })
+      }) 
+
+      this.app.post('/api', (req, res) => {
+        res.json({
+          msg: 'post API'
+        })
+      }) 
+
+      this.app.delete('/api', (req, res) => {
+        res.json({
+          msg: 'delete API'
+        })
+      }) 
+
+      this.app.patch('/api', (req, res) => {
+        res.json({
+          msg: 'patch API'
+        })
+      }) 
+
+     
    }
 
    listen() {
