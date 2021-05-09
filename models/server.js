@@ -14,6 +14,9 @@ class server {
      this.app = express();   
      this.port = process.env.PORT;
 
+     // declarar rutas aqui sera facil ver todas rutas que dispone ApiRest
+     // cada ruta dispone de endpoints propios , la suma de todos seria los endPoints de RestApi .
+     this.userPath = '/api/users';   
 
     // Middelwares : son nada mas fuciones que van a añadir otras funcionalida a mi WebServer  
      this.middlewares();
@@ -35,43 +38,11 @@ class server {
 
    } 
 
-   rourtes() {
-     
-    // my Rest EndPoints
+   rourtes() { 
+    // middelware : (path , archivo de endpoint a reaccionar depende de metodo http relacionado al path)
+    this.app.use( this.userPath , require('../routes/users'));
 
-      this.app.get('/api', (req, res) => {
-         // este callback() es el controlador de ruta /api de momento .
-        res.json({
-          // .json Retorno data en Formato json
-          msg: 'get API'
-        })
-      }) 
-
-      this.app.put('/api', (req, res) => {
-        res.status(400).json({
-          msg: 'put API'
-        })
-      }) 
-
-      this.app.post('/api', (req, res) => {
-        res.status(201).json({
-          msg: 'post API'
-        })
-      }) 
-
-      this.app.delete('/api', (req, res) => {
-        res.json({
-          msg: 'delete API'
-        })
-      }) 
-
-      this.app.patch('/api', (req, res) => {
-        res.json({
-          msg: 'patch API'
-        })
-      }) 
-
-     
+   
    }
 
    listen() {
