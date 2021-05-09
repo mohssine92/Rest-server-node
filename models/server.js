@@ -1,4 +1,5 @@
 const express = require('express')
+var cors = require('cors')
 
 
 
@@ -23,6 +24,9 @@ class server {
    }
 
    middlewares(){
+     // Cors: restringir originis app que pueden req a esta apiRest
+     this.app.use( cors() );
+
 
     // relacionado a ruta /publica 101.
     // servido en root path
