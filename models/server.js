@@ -14,7 +14,7 @@ class server {
      this.port = process.env.PORT;
 
 
-    // Middelwares : son nada mas fuciones que van a añadir otras funcionalida a mis WebServer  
+    // Middelwares : son nada mas fuciones que van a añadir otras funcionalida a mi WebServer  
      this.middlewares();
 
     // Rutas de mi aplicacion 
@@ -24,7 +24,7 @@ class server {
 
    middlewares(){
 
-    // relacionado a ruta publica 101.
+    // relacionado a ruta /publica 101.
     // servido en root path
     this.app.use(express.static('public'));
 
@@ -38,18 +38,19 @@ class server {
       this.app.get('/api', (req, res) => {
          // este callback() es el controlador de ruta /api de momento .
         res.json({
+          // .json Retorno data en Formato json
           msg: 'get API'
         })
       }) 
 
       this.app.put('/api', (req, res) => {
-        res.json({
+        res.status(400).json({
           msg: 'put API'
         })
       }) 
 
       this.app.post('/api', (req, res) => {
-        res.json({
+        res.status(201).json({
           msg: 'post API'
         })
       }) 
