@@ -13,10 +13,16 @@ const UsersGet = (req, res = response ) => {
 
 
 const UsersPost = (req, res = response ) => {  
-     // '/' => se carga directamente despues del prefix que esta recien configurado 
-     // si no configuramos prefix se carga despues del domino directamente 
+    
+   // Extraer Body
+   // la informacion que manda req ya esta serializada por un middelware a un objeto json literal
+   const {nombre, edad} = req.body;
+   
+   
      res.status(400).json({
-       msg: 'put API - controller'
+       msg: 'Post API - usersPost',
+       nombre,
+       edad
      })
     
 }

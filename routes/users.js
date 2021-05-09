@@ -15,9 +15,11 @@ const router = Router();
 // le paso Referencia de funcion UserGet , le ejecuta a su tiempo
  router.get('/', UsersGet) 
 
- router.put('/', UsersPost) 
+// '/' => se carga directamente despues del prefix que esta recien configurado 
+// si no configuramos prefix:api , la carga sera directamente despues del dominio  
+ router.put('/', UsersPut) 
 
- router.post('/', UsersPut)  
+ router.post('/', UsersPost)  
 
  router.delete('/', UsersPatch) 
 

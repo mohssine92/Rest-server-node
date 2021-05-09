@@ -30,6 +30,9 @@ class server {
      // Cors: restringir originis app que pueden req a esta apiRest
      this.app.use( cors() );
 
+    // Lectura y parseo del body disparado por Origen o navigador o potman  hacia cierto endpoint  
+    this.app.use( express.json() );   
+  
 
     // relacionado a ruta /publica 101.
     // servido en root path
