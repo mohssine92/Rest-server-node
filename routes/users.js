@@ -17,7 +17,7 @@ const router = Router();
 
 // '/' => se carga directamente despues del prefix que esta recien configurado 
 // si no configuramos prefix:api , la carga sera directamente despues del dominio  
- router.put('/', UsersPut) 
+ router.put('/:id', UsersPut) 
 
  router.post('/', UsersPost)  
 

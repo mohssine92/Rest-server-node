@@ -1,13 +1,23 @@
-const { response }= require('express');
+const { response , request } = require('express');
 
 
 
-const UsersGet = (req, res = response ) => {
-   res.json({
+const UsersGet = (req = request, res = response ) => {
+  //recibir params opcionales es decir los queries ?..&..&.. 
+  // http://localhost:8080/api/users?q=232&s=11323234&apiKey=679788&name=mohssine
+  const {q , apiKey , name = 'No-name', page=1 , limit} = req.query;
+  
+  
+  res.json({
      // este callback() es el controlador de ruta /api de momento ./ .json Retorno data en Formato json
      // es un estandar casi todas Apis retornan informacion en formato json .
-      msg: 'get API - Controller'
-   })
+      msg: 'get API - Controller',
+      q,
+      apiKey,
+      name,
+      page,
+      limit
+  })
    
 }
 
@@ -28,13 +38,18 @@ const UsersPost = (req, res = response ) => {
 }
 
 const UsersPut = (req, res = response ) => {
-    res.status(201).json({
-        // content-type + status response  
-        msg: 'post API - controller'
-    })
   
+  // recibir params fromn root es decir params obligatorios
+  const id = req.params.id
+  
+    res.status(201).json({
+      // content-type + status response  
+      msg: 'put API - controller',
+      id 
+    })
 }
-
+ 
+  
 
 const UsersPatch = (req, res = response ) => { 
   res.json({
