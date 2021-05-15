@@ -1,5 +1,11 @@
 const { response , request } = require('express');
 
+// Imporatacion de models
+const Usuario = require('../models/Usuario')
+
+
+
+// Controladores de end-points del recurso /usuarios .
 
 
 const UsersGet = (req = request, res = response ) => {
@@ -24,17 +30,22 @@ const UsersGet = (req = request, res = response ) => {
 }
 
 
-const UsersPost = (req, res = response ) => {  
+const UsersPost = async (req = request, res = response ) => {  
     
    // Extraer Body
    // la informacion que manda req ya esta serializada por un middelware a un objeto json literal
-   const {nombre, edad} = req.body;
-   
+   const body= req.body;
+
+   // cualquier llave valor:llega atraves de jsonObject si no esta definida en el modelo mongose lo ingnora por mi al momento de insersacion db .
+    const usuario = new Usuario( body );
+
+    await usuario.save();
+
+
    
      res.status(400).json({
        msg: 'Post API - usersPost',
-       nombre,
-       edad
+       usuario 
      })
     
 }

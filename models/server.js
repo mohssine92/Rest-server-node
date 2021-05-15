@@ -1,5 +1,6 @@
 const express = require('express')
-var cors = require('cors')
+var cors = require('cors');
+const { dbConnection } = require('../db/config');
 
 
 
@@ -16,7 +17,10 @@ class server {
 
      // declarar rutas aqui sera facil ver todas rutas que dispone ApiRest
      // cada ruta dispone de endpoints propios , la suma de todos seria los endPoints de RestApi .
-     this.userPath = '/api/users';   
+     this.userPath = '/api/users';  
+     
+     // Conectar a db atlass en nube
+     this.connectarDB();
 
     // Middelwares : son nada mas fuciones que van a añadir otras funcionalida a mi WebServer  
      this.middlewares();
@@ -24,6 +28,11 @@ class server {
     // Rutas de mi aplicacion 
      this.rourtes();
 
+   }
+
+   async connectarDB() {
+     // aqui se implemeta varias conexiones a base de datos diferentes usar una o otra ... 
+      await dbConnection(); 
    }
 
    middlewares(){

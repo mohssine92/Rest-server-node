@@ -9,7 +9,7 @@ const { UsersGet,
 const router = Router();
 
 
-// Restapi Endpoints , para path user :
+// Restapi Endpoints , para Recurso de users:
 
 
 // le paso Referencia de funcion UserGet , le ejecuta a su tiempo
