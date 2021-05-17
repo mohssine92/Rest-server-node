@@ -32,30 +32,26 @@ const UsersGet = (req = request, res = response ) => {
 
 
 const UsersPost = async (req = request, res = response ) => {  
-    
+  // aqui hacemos lo que hace unico mi controller , en este caso la creacion de user
+  
+   
    // Extraer Body
    // la informacion que manda req ya esta serializada por un middelware a un objeto json literal
    // extrago solo lo que quiro, protego ciertos cambos
    const { nombre , correo , password, rol } = req.body;
 
+
    // cualquier llave valor:llega atraves de jsonObject si no esta definida en el modelo mongose lo ingnora por mi al momento de insersacion db .
     const usuario = new Usuario({ nombre , correo , password, rol });
 
-    //verificar si el correo existe
-    
-    
 
     //Encryptar la contraseña
     const salt = bcrypt.genSaltSync();
     usuario.password = bcrypt.hashSync( password, salt );  // usuario es un Objeto de tipo usuario , asi por referencia podemos manipular valor de los sus llaves y su props .
  
-
-
-    // Guardar en db
-    await usuario.save();
-
-
-   
+     // Guardar en db
+     await usuario.save();
+     
      res.status(400).json({
        usuario 
      })

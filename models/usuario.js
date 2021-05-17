@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 
 
 
+
 const UsuarioSchema = Schema({
     
   nombre: {
@@ -35,6 +36,16 @@ const UsuarioSchema = Schema({
   }
 
 })
+
+
+
+// Resscribir metodo de monngose asi quito campos que no quiero devolver globalmente 
+UsuarioSchema.methods.toJSON = function() {
+  const { __v, password, ...usuario  } = this.toObject();
+  return usuario;
+}
+
+
 
 // compilar  nuestra esquema en un modelo  => asi Usuario es una class .
 module.exports = model('Usuario', UsuarioSchema );
