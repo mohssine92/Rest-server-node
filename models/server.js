@@ -19,7 +19,7 @@ class server {
      // cada ruta dispone de endpoints propios , la suma de todos seria los endPoints de RestApi .
      this.userPath = '/api/users';  
      
-     // Conectar a db atlass en nube
+     // Conectar a db atlass en nube , es um metodo , se ejecuta antes de lod middelware
      this.connectarDB();
 
     // Middelwares : son nada mas fuciones que van a añadir otras funcionalida a mi WebServer  
@@ -36,15 +36,18 @@ class server {
    }
 
    middlewares(){
-     // Cors: restringir originis app que pueden req a esta apiRest
+     // app.use() es los middelware de express ver mas informacion en la doc de express ..
+     // Cors , donde configuramos las cabezeras como los dominios que tiene permioso a comunicar a los end-point del Restserver , 
+     // Rest-server pudede ser publica , o solo para algunos clientes etc...hay varios escenarios que pudede configura
      this.app.use( cors() );
 
     // Lectura y parseo del body disparado por Origen o navigador o postman  hacia cierto endpoint  
+    // un formulario dispara su post en este especifico punto codificamos valor req en formato json , en objeto json literal 
     this.app.use( express.json() );   
   
-
     // relacionado a ruta /publica 101.
     // servido en root path
+    //http://localhost:8080
     this.app.use(express.static('public'));
 
 
@@ -52,6 +55,7 @@ class server {
 
    rourtes() { 
     // middelware : (path , archivo de endpoint a reaccionar depende de metodo http relacionado al path)
+    // si se añade el sufijo al dominio el archivo ruta quien reciba los request 
     this.app.use( this.userPath , require('../routes/users'));
 
    

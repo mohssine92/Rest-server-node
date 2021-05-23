@@ -10,8 +10,8 @@ const validarCampos = (req, res, next) => {
   if( !errors.isEmpty() ){
     return res.status(400).json(errors); 
   }
-  
-   // si llegas hasta aqui sigue con el siguiente middleware sino sigue al controlador es lo que hace esta funcion
+
+   // si no returna respuesta de errores , pues pasamos a la ejecuccion del siguiente instruccion es lo que hace exactamente esta funcion de next.
    next();
 
 }

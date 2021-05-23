@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 
 
@@ -45,7 +46,8 @@ UsuarioSchema.methods.toJSON = function() {
   return usuario;
 }
 
-
+// confugiracion de  paginacion 
+UsuarioSchema.plugin(mongoosePaginate);
 
 // compilar  nuestra esquema en un modelo  => asi Usuario es una class .
 module.exports = model('Usuario', UsuarioSchema );
